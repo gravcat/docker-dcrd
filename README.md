@@ -17,6 +17,11 @@ This repository contains **Dockerfile** of [Decred daemon](http://decred.org/) f
 
    (alternatively, you can build an image from Dockerfile: `docker build -t="reiuiji/dcrd" github.com/reiuiji/dcrd`)
 
+### Building
+docker build -t="reiuiji/dcrd" .
+docker run -d --name="dcrd" reiuiji/dcrd
+docker kill --signal="SIGINT" dcrd
+
 
 ### Usage
 
