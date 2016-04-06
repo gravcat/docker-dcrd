@@ -3,12 +3,14 @@
 #
 
 # Pull base image.
-FROM dockerfile/ubuntu
+FROM centos:7
+MAINTAINER "Reiuiji" <reiuiji@gmail.com>
 
-# Install Go
+# Install dcrd
 RUN \
 mkdir -p /dcrd && \
-curl https://github.com/decred/decred-release/releases/download/v0.0.9/linux-amd64-20160401-01.tar.gz | tar xvzf dcrd -C /dcrd --strip-components=1
+curl -L https://github.com/decred/decred-release/releases/download/v0.0.9/linux-amd64-20160401-01.tar.gz | tar xvz linux-amd64/dcrd -C /dcrd
+#curl https://github.com/decred/decred-release/releases/download/v0.0.9/linux-amd64-20160401-01.tar.gz | tar xvzf - -C /dcrd --strip-components=1
 
 
 # Define working directory.
