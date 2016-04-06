@@ -20,10 +20,10 @@ This repository contains **Dockerfile** of [Decred daemon](http://decred.org/) f
 
 ### Usage
 
-docker run -d -p 9109:9109 reiuiji/dcrd
+    docker run -d -p 9109:9109 reiuiji/dcrd
 
 #### Attach persistent/shared directories
 
-docker run -d -p 9109:9109 -v <dcrd-conf-dir>:/dcrd/conf -v <certs-dir>:/dcrd/certs -v <log-dir>:/dcrd/log
+    docker run -d -p 9109:9109 -v <dcrd-conf-dir>:/dcrd/conf -v <certs-dir>:/dcrd/certs -v <log-dir>:/dcrd/log
 
 After few seconds dcrd will be runing and can check through the RPC client.
