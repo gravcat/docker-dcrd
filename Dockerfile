@@ -3,26 +3,34 @@
 #
 
 # Pull base image.
-FROM centos:7
+FROM centos:latest
 MAINTAINER "Reiuiji" <reiuiji@gmail.com>
 
-# Install dcrd
-RUN \
-mkdir -p /dcrd && \
-curl -L https://github.com/decred/decred-release/releases/download/v0.0.9/linux-amd64-20160401-01.tar.gz | tar zxvf - --strip-components=1 -C /dcrd linux-amd64/dcrd
+ENV VERSION=v0.0.9
+ENV FILE=linux-amd64-20160401-01.tar.gz
 
+ENV DCRURL=https://github.com/decred/decred-release/releases/download/${VERSION}/${FILE}
 
-RUN ls -lh /
-RUN ls -lh /dcrd
+ENV DCRDIR=/root/.dcrd
+
+# Create DCR Directory
+RUN mkdir -p ${DCRDIR}
+
+# Download and extract the necessary binary (dcrd)
+RUN cd ${DCRDIR} && \
+curl -L ${DCRURL} | tar zxvf - --strip-components=1 linux-amd64/dcrd 
+
+# Grab the dcrd.conf and put it in the image
+COPY dcrd.conf ${DCRDIR}/dcrd.conf
 
 # Define working directory.
-WORKDIR /dcrd
+WORKDIR ${DCRDIR}
 
 # Define default command.
-#CMD ["/dcrd/dcrd"]
+#CMD ["bash"]
+ENTRYPOINT ${DCRDIR}/dcrd
 
-ENTRYPOINT /dcrd/dcrd
-
-# Expose Ports
+# Server Port
 EXPOSE 9108
+# RPC Server Port
 EXPOSE 9109
