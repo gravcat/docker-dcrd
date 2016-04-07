@@ -1,4 +1,6 @@
-## dcrd Dockerfile
+## Decred Daemon Dockerfile
+
+This is a basrebone docker container build using busybox
 
 
 This repository contains **Dockerfile** of [Decred daemon](http://decred.org/) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/reiuiji/dcrd/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
@@ -6,16 +8,20 @@ This repository contains **Dockerfile** of [Decred daemon](http://decred.org/) f
 
 ### Base Docker Image
 
-* [dockerfile/ubuntu](http://dockerfile.github.io/#/ubuntu)
+* [progrium/busybox](https://github.com/progrium/busybox)
 
 
 ### Installation
 
 1. Install [Docker](https://www.docker.com/).
+    emerge -va docker
+    pacman -S docker
+    apt-get install docker
+    yum install docker
 
 2. Download [automated build](https://registry.hub.docker.com/u/reiuiji/dcrd/) from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull reiuiji/dcrd`
 
-   (alternatively, you can build an image from Dockerfile: `docker build -t="reiuiji/dcrd" github.com/reiuiji/dcrd`)
+   (alternatively, you can build an image from Dockerfile)
 
 ### Building
 docker build -t="reiuiji/dcrd" .
@@ -24,11 +30,30 @@ docker kill --signal="SIGINT" dcrd
 
 
 ### Usage
+This docker image can either be configured before build or attach the config.
 
-    docker run -d -p 9109:9109 reiuiji/dcrd
+#### If you want to change the provided dcrd.conf, you should do the following:
 
-#### Attach persistent/shared directories
+    docker cp /path/to/your/dcrd.conf:/root/.dcrd/dcrf.conf
 
-    docker run -d -p 9109:9109 -v <dcrd-conf-dir>:/dcrd/conf -v <certs-dir>:/dcrd/certs -v <log-dir>:/dcrd/log
+#### If you only want to tweak the dcrd.conf, you can run a temp link:
 
-After few seconds dcrd will be runing and can check through the RPC client.
+    docker run -d -p 9109:9109 -name dcrd -v /path/to/your/dcrd.conf:/root/.dcrd/dcrf.conf reiuiji/dcrd
+
+#### Run your dcrd container
+
+    docker run -d -p 9109:9109 -name dcrd reiuiji/dcrd
+
+### Checking if it works
+To check if dcrd is working you can check the docker logs
+
+    docker logs dcrd
+
+### Shutting down the docker container
+If you need to close down the docker you can run the following:
+
+    docker kill --signal=SIGINT dcrd
+
+### Donation
+If you like this and want to see more, please donate :)
+DsXSh151DsJpEA8mrAW5gCfVVqNCK8vQAss
