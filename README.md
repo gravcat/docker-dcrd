@@ -56,6 +56,10 @@ If you need to close down the docker you can run the following:
 ### Referances
  * [docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
 
+### License
+This code is under the MIT License.
+
 ### Donation
 If you like this and want to see more, please donate :)
+
 DsXSh151DsJpEA8mrAW5gCfVVqNCK8vQAss
