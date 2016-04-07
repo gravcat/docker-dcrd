@@ -19,11 +19,11 @@ Note: This is a basrebone docker container build using busybox to minamize the i
 ### Building
 To build this docker container run the following commands after you edited the dcrd.conf file
 
-    docker build -t="reiuiji/dcrd" .
+    docker build -t="reiuiji/dcrd" github.com/reiuiji/dcrd
 
     docker run -d --name="dcrd" reiuiji/dcrd
 
-    docker kill --signal="SIGINT" dcrd
+    docker kill dcrd
 
 
 ### Usage
