@@ -1,6 +1,8 @@
 ## Decred Daemon Dockerfile
 
-This repository contains **Dockerfile** of [Decred daemon](http://decred.org/) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/reiuiji/dcrd/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
+This repository maintains the [Decred daemon](http://decred.org/) **Dockerfile** for [Docker](https://www.docker.com/).
+
+The repo [automatically builds](https://registry.hub.docker.com/u/reiuiji/dcrd/) and publish's the docker image to the [Docker Hub Registry](https://registry.hub.docker.com/).
 
 ### Base Docker Image
 
