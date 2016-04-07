@@ -1,24 +1,34 @@
 #
-# Decred Release Docker File
+# Decred Daemon (dcrd) Docker File
 #
 
 # Pull base image.
-FROM centos:latest
+FROM progrium/busybox
 MAINTAINER "Reiuiji" <reiuiji@gmail.com>
 
 ENV VERSION=v0.0.9
 ENV FILE=linux-amd64-20160401-01.tar.gz
 
-ENV DCRURL=https://github.com/decred/decred-release/releases/download/${VERSION}/${FILE}
+ENV DCRURL=http://github.com/decred/decred-release/releases/download/${VERSION}/${FILE}
 
 ENV DCRDIR=/root/.dcrd
+
+#Install Necessary Dependencies
+RUN opkg-install tar
 
 # Create DCR Directory
 RUN mkdir -p ${DCRDIR}
 
 # Download and extract the necessary binary (dcrd)
+ADD ${DCRURL} ${DCRDIR}
+
 RUN cd ${DCRDIR} && \
-curl -L ${DCRURL} | tar zxvf - --strip-components=1 linux-amd64/dcrd 
+tar zxvf ${FILE} linux-amd64/dcrd -C . && \
+mv linux-amd64/* . && \
+rmdir linux-amd64 && \
+rm ${FILE}
+
+#curl -L ${DCRURL} | tar zxvf - --strip-components=1 linux-amd64/dcrd 
 
 # Grab the dcrd.conf and put it in the image
 COPY dcrd.conf ${DCRDIR}/dcrd.conf
@@ -27,7 +37,6 @@ COPY dcrd.conf ${DCRDIR}/dcrd.conf
 WORKDIR ${DCRDIR}
 
 # Define default command.
-#CMD ["bash"]
 ENTRYPOINT ${DCRDIR}/dcrd
 
 # Server Port
