@@ -1,15 +1,12 @@
 ## Decred Daemon Dockerfile
 
-This is a basrebone docker container build using busybox
-
-
 This repository contains **Dockerfile** of [Decred daemon](http://decred.org/) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/reiuiji/dcrd/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
-
 
 ### Base Docker Image
 
 * [progrium/busybox](https://github.com/progrium/busybox)
 
+Note: This is a basrebone docker container build using busybox to minamize the image size.
 
 ### Installation
 
@@ -20,9 +17,13 @@ This repository contains **Dockerfile** of [Decred daemon](http://decred.org/) f
    (alternatively, you can build an image from Dockerfile)
 
 ### Building
-docker build -t="reiuiji/dcrd" .
-docker run -d --name="dcrd" reiuiji/dcrd
-docker kill --signal="SIGINT" dcrd
+To build this docker container run the following commands after you edited the dcrd.conf file
+
+    docker build -t="reiuiji/dcrd" .
+
+    docker run -d --name="dcrd" reiuiji/dcrd
+
+    docker kill --signal="SIGINT" dcrd
 
 
 ### Usage
@@ -48,7 +49,7 @@ To check if dcrd is working you can check the docker logs
 ### Shutting down the docker container
 If you need to close down the docker you can run the following:
 
-    docker kill --signal=SIGINT dcrd
+    docker kill dcrd
 
 ### Referances
  * [docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
