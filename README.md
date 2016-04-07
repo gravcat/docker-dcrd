@@ -8,7 +8,7 @@ The repo [automatically builds](https://registry.hub.docker.com/u/reiuiji/dcrd/)
 
 * [progrium/busybox](https://github.com/progrium/busybox)
 
-Note: This is a basrebone docker container build using busybox to minamize the image size.
+**Note**: This is a basrebone docker container build using busybox to minamize the image size.
 
 ### Installation
 
