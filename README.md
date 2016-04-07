@@ -14,10 +14,6 @@ This repository contains **Dockerfile** of [Decred daemon](http://decred.org/) f
 ### Installation
 
 1. Install [Docker](https://www.docker.com/).
-    emerge -va docker
-    pacman -S docker
-    apt-get install docker
-    yum install docker
 
 2. Download [automated build](https://registry.hub.docker.com/u/reiuiji/dcrd/) from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull reiuiji/dcrd`
 
@@ -53,6 +49,9 @@ To check if dcrd is working you can check the docker logs
 If you need to close down the docker you can run the following:
 
     docker kill --signal=SIGINT dcrd
+
+### Referances
+ * [docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
 
 ### Donation
 If you like this and want to see more, please donate :)
