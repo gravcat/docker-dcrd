@@ -6,8 +6,8 @@
 FROM progrium/busybox
 MAINTAINER "Reiuiji" <reiuiji@gmail.com>
 
-ENV VERSION=v0.0.9
-ENV FILE=linux-amd64-20160401-01.tar.gz
+ENV VERSION=v0.0.10
+ENV FILE=linux-amd64-20160406-01.tar.gz
 
 ENV DCRURL=http://github.com/decred/decred-release/releases/download/${VERSION}/${FILE}
 
