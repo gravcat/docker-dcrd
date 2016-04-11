@@ -3,7 +3,7 @@
 #
 
 # Pull base image.
-FROM progrium/busybox
+FROM centos:latest
 MAINTAINER "Reiuiji" <reiuiji@gmail.com>
 
 ENV VERSION=v0.0.10
@@ -13,33 +13,22 @@ ENV DCRURL=http://github.com/decred/decred-release/releases/download/${VERSION}/
 
 ENV DCRDIR=/root/.dcrd
 
-#Install Necessary Dependencies
-RUN opkg-install tar
-
 # Create DCR Directory
 RUN mkdir -p ${DCRDIR}
-
-# Download and extract the necessary binary (dcrd)
-ADD ${DCRURL} ${DCRDIR}
-
-RUN cd ${DCRDIR} && \
-tar zxvf ${FILE} linux-amd64/dcrd -C . && \
-mv linux-amd64/* . && \
-rmdir linux-amd64 && \
-rm ${FILE}
-
-#curl -L ${DCRURL} | tar zxvf - --strip-components=1 linux-amd64/dcrd 
 
 # Grab the dcrd.conf and put it in the image
 COPY dcrd.conf ${DCRDIR}/dcrd.conf
 
-# Define working directory.
-WORKDIR ${DCRDIR}
+#Download and extract the needed binary (dcrd)
+RUN curl -L ${DCRURL} | tar zxvf - --strip-components=1 -C /usr/bin/. linux-amd64/dcrd
 
-# Define default command.
-ENTRYPOINT ${DCRDIR}/dcrd
+#Setup Data Volume for the decred daemon
+VOLUME ${DCRDIR}
 
-# Server Port
+#Run decred daemon on start
+CMD ["dcrd"]
+
+# Default Decred peer-to-peer port
 EXPOSE 9108
-# RPC Server Port
+# Default RPC port
 EXPOSE 9109
