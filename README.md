@@ -34,7 +34,7 @@ This docker image can either be configured before build or attach the config.
 
     docker run -d --name="dcrd" reiuiji/dcrd
 
-or
+#### If you need to expose RPC ports
 
     docker run -d -p 9109:9109 -name dcrd reiuiji/dcrd
 
