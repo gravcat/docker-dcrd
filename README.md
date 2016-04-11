@@ -26,11 +26,7 @@ This docker image can either be configured before build or attach the config.
 
 #### If you want to change the provided dcrd.conf, you should do the following:
 
-    docker cp /path/to/your/dcrd.conf:/root/.dcrd/dcrf.conf
-
-#### If you only want to tweak the dcrd.conf, you can run a temp link:
-
-    docker run -d -p 9109:9109 -name dcrd -v /path/to/your/dcrd.conf:/root/.dcrd/dcrf.conf reiuiji/dcrd
+    docker cp /path/to/your/dcrd.conf:/data/dcrf.conf
 
 #### Run your dcrd container
 
@@ -39,6 +35,14 @@ This docker image can either be configured before build or attach the config.
 or
 
     docker run -d -p 9109:9109 -name dcrd reiuiji/dcrd
+
+#### If you only want to tweak the dcrd.conf, you can run a temp link:
+
+    docker run -d -p 9109:9109 -name dcrd -v /path/to/your/dcrd.conf:data/dcrf.conf reiuiji/dcrd
+
+#### If you want to run with the built in volume of the entire dcrd daemon:
+
+    docker run -d --name="dcrd" -v /path/to/your/.dcrd/data:/data reiuiji/dcrd
 
 ### Checking if it works
 To check if dcrd is working you can check the docker logs
