@@ -14,7 +14,7 @@ The repo [automatically builds](https://registry.hub.docker.com/u/reiuiji/dcrd/)
 
 2. Download [automated build](https://registry.hub.docker.com/u/reiuiji/dcrd/) from public [Docker Hub Registry](https://registry.hub.docker.com/):
 
-   docker pull reiuiji/dcrd
+    docker pull reiuiji/dcrd
 
    (alternatively, you can build an image from Dockerfile)
 
