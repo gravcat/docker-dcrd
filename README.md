@@ -46,6 +46,8 @@ This docker image can either be configured before build or attach the config.
 
     docker run -d --name="dcrd" -v /path/to/your/.dcrd/data:/data reiuiji/dcrd
 
+**NOTE**: Make surce the directory on your system have the dcrd.conf file
+
 ### Checking if it works
 To check if dcrd is working you can check the docker logs
 
