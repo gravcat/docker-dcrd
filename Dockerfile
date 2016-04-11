@@ -11,7 +11,7 @@ ENV FILE=linux-amd64-20160406-01.tar.gz
 
 ENV DCRURL=http://github.com/decred/decred-release/releases/download/${VERSION}/${FILE}
 
-ENV DCRDIR=/data
+ENV DCRDIR=/root/.dcrd
 
 # Create DCR Directory
 RUN mkdir -p ${DCRDIR}
@@ -26,7 +26,7 @@ RUN curl -L ${DCRURL} | tar zxvf - --strip-components=1 -C /usr/bin/. linux-amd6
 VOLUME ${DCRDIR}
 
 #Run decred daemon on start
-CMD dcrd --configfile=${DCRDIR}/dcrd.conf --datadir=${DCRDIR}/data --logdir=${DCRDIR}/logs --rpccert=${DCRDIR}/rpc.cert --rpckey=${DCRDIR}/rpc.key
+CMD dcrd 
 
 # Default Decred peer-to-peer port
 EXPOSE 9108
