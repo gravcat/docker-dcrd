@@ -26,7 +26,7 @@ RUN curl -L ${DCRURL} | tar zxvf - --strip-components=1 -C /usr/bin/. linux-amd6
 VOLUME ${DCRDIR}
 
 #Run decred daemon on start
-CMD dcrd --configfile=${DCRDIR}/dcrd.conf --datadir=${DCRDIR}/data --logdir=${DCRDIR}/logs
+CMD dcrd --configfile=${DCRDIR}/dcrd.conf --datadir=${DCRDIR}/data --logdir=${DCRDIR}/logs --rpccert=${DCRDIR}/rpc.cert --rpckey=${DCRDIR}/rpc.key
 
 # Default Decred peer-to-peer port
 EXPOSE 9108
