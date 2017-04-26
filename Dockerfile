@@ -6,10 +6,10 @@
 FROM centos:latest
 MAINTAINER "Reiuiji" <reiuiji@gmail.com>
 
-ENV VERSION=v0.0.10
-ENV FILE=linux-amd64-20160406-01.tar.gz
+ENV VERSION=v0.8.2
+ENV FILE=decred-linux-amd64-$VERSION.tar.gz
 
-ENV DCRURL=http://github.com/decred/decred-release/releases/download/${VERSION}/${FILE}
+ENV DCRURL=https://github.com/decred/decred-binaries/releases/download/${VERSION}/${FILE}
 
 ENV DCRDIR=/root/.dcrd
 
@@ -20,7 +20,7 @@ RUN mkdir -p ${DCRDIR}
 COPY dcrd.conf ${DCRDIR}/dcrd.conf
 
 #Download and extract the needed binary (dcrd)
-RUN curl -L ${DCRURL} | tar zxvf - --strip-components=1 -C /usr/bin/. linux-amd64/dcrd
+RUN curl -L ${DCRURL} | tar zxvf - --strip-components=1 -C /usr/bin/. decred-linux-amd64-$VERSION/dcrd
 
 #Setup Data Volume for the decred daemon
 VOLUME ${DCRDIR}
