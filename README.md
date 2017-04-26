@@ -2,7 +2,7 @@
 
 This repository maintains the [Decred daemon](http://decred.org/) **Dockerfile** for [Docker](https://www.docker.com/).
 
-The repo [automatically builds](https://registry.hub.docker.com/u/reiuiji/dcrd/) and publish's the docker image to the [Docker Hub Registry](https://registry.hub.docker.com/).
+The repo [automatically builds](https://registry.hub.docker.com/u/reiuiji/dcrd/) and publishes the docker image to the [Docker Hub Registry](https://registry.hub.docker.com/).
 
 ### Base Docker Image
 
@@ -20,45 +20,52 @@ The repo [automatically builds](https://registry.hub.docker.com/u/reiuiji/dcrd/)
 
 ### Building
 To build this docker container run the following commands after you edited the dcrd.conf file
-
-    docker build -t="reiuiji/dcrd" github.com/reiuiji/dcrd
+````bash
+docker build -t="reiuiji/dcrd" github.com/reiuiji/dcrd
+````
 
 ### Usage
 This docker image can either be configured before build or attach the config.
 
 #### If you want to change the provided dcrd.conf, you should do the following:
-
-    docker cp /path/to/your/dcrd.conf:/data/dcrf.conf
-
+````bash
+docker cp /path/to/your/dcrd.conf:/data/dcrd.conf
+````
 #### Run your dcrd container
 
-    docker run -d --name="dcrd" reiuiji/dcrd
-
+````bash
+docker run -d --name="dcrd" reiuiji/dcrd
+````
 #### If you need to expose RPC ports
 
-    docker run -d -p 9109:9109 -name dcrd reiuiji/dcrd
-
+````bash
+docker run -d -p 9109:9109 -name dcrd reiuiji/dcrd
+````
 #### If you only want to tweak the dcrd.conf, you can run a temp link:
 
-    docker run -d -p 9109:9109 -name dcrd -v /path/to/your/dcrd.conf:data/dcrf.conf reiuiji/dcrd
-
+````bash
+docker run -d -p 9109:9109 -name dcrd -v /path/to/your/dcrd.conf:data/dcrd.conf reiuiji/dcrd
+````
 #### If you want to run with the built in volume of the entire dcrd daemon:
 
-    docker run -d --name="dcrd" -v /path/to/your/.dcrd/data:/data reiuiji/dcrd
-
-**NOTE**: Make surce the directory on your system have the dcrd.conf file
+````bash
+docker run -d --name="dcrd" -v /path/to/your/.dcrd/data:/data reiuiji/dcrd
+````
+**NOTE**: Make sure the directory on your system have the `dcrd.conf` file
 
 ### Checking if it works
-To check if dcrd is working you can check the docker logs
+To check if `dcrd` is working you can check the docker logs
 
-    docker logs dcrd
-
+````bash
+docker logs dcrd
+````
 ### Shutting down the docker container
-If you need to close down the docker you can run the following:
+If you need to close down the docker container you can run the following:
 
-    docker kill --signal=SIGINT dcrd
-
-**NOTE**: sending a SIGINT (crtl+c) will have dcrd shutdown safely
+````bash
+docker kill --signal=SIGINT dcrd
+````
+**NOTE**: sending a SIGINT (crtl+c) will have `dcrd` shutdown safely
 
 ### Referances
  * [docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
