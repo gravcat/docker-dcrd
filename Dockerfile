@@ -9,7 +9,7 @@ MAINTAINER "Reiuiji" <reiuiji@gmail.com>
 ENV VERSION=v0.8.2
 ENV FILE=decred-linux-amd64-$VERSION.tar.gz
 
-ENV DCRURL=http://github.com/decred/decred-binaries/releases/download/${VERSION}/${FILE}
+ENV DCRURL=https://github.com/decred/decred-binaries/releases/download/${VERSION}/${FILE}
 
 ENV DCRDIR=/root/.dcrd
 
