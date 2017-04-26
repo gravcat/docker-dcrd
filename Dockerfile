@@ -6,10 +6,10 @@
 FROM centos:latest
 MAINTAINER "Reiuiji" <reiuiji@gmail.com>
 
-ENV VERSION=v0.0.10
-ENV FILE=linux-amd64-20160406-01.tar.gz
+ENV VERSION=v0.8.2
+ENV FILE=decred-linux-amd64-$VERSION.tar.gz
 
-ENV DCRURL=http://github.com/decred/decred-release/releases/download/${VERSION}/${FILE}
+ENV DCRURL=http://github.com/decred/decred-binaries/releases/download/${VERSION}/${FILE}
 
 ENV DCRDIR=/root/.dcrd
 
