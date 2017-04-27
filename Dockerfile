@@ -6,7 +6,7 @@
 FROM centos:latest
 MAINTAINER "Reiuiji" <reiuiji@gmail.com>
 
-ENV VERSION=v0.8.2
+ENV VERSION=v1.0.0
 ENV FILE=decred-linux-amd64-$VERSION.tar.gz
 
 ENV DCRURL=https://github.com/decred/decred-binaries/releases/download/${VERSION}/${FILE}
@@ -26,7 +26,7 @@ RUN curl -L ${DCRURL} | tar zxvf - --strip-components=1 -C /usr/bin/. decred-lin
 VOLUME ${DCRDIR}
 
 #Run decred daemon on start
-CMD dcrd 
+CMD dcrd
 
 # Default Decred peer-to-peer port
 EXPOSE 9108
