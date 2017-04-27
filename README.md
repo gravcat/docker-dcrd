@@ -39,12 +39,12 @@ docker run -d --name="dcrd" reiuiji/dcrd
 #### If you need to expose RPC ports
 
 ````bash
-docker run -d -p 9109:9109 -name dcrd reiuiji/dcrd
+docker run -d -p 9109:9109 --name dcrd reiuiji/dcrd
 ````
 #### If you only want to tweak the dcrd.conf, you can run a temp link:
 
 ````bash
-docker run -d -p 9109:9109 -name dcrd -v /path/to/your/dcrd.conf:data/dcrd.conf reiuiji/dcrd
+docker run -d -p 9109:9109 --name dcrd -v /path/to/your/dcrd.conf:data/dcrd.conf reiuiji/dcrd
 ````
 #### If you want to run with the built in volume of the entire dcrd daemon:
 
@@ -67,8 +67,9 @@ docker kill --signal=SIGINT dcrd
 ````
 **NOTE**: sending a SIGINT (crtl+c) will have `dcrd` shutdown safely
 
-### Referances
+### References
  * [docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
+ * [dcrd](https://github.com/decred/dcrd)
 
 ### License
 This code is under the MIT License.
