@@ -20,7 +20,7 @@ RUN mkdir -p ${DCRDIR}
 COPY dcrd.conf ${DCRDIR}/dcrd.conf
 
 #Download and extract the needed binary (dcrd)
-RUN curl -L ${DCRURL} | tar zxvf - --strip-components=1 -C /usr/bin/. decred-linux-amd64-$VERSION/dcrd
+RUN curl -L ${DCRURL} | tar zxvf - --strip-components=1 -C /usr/bin/. 
 
 #Setup Data Volume for the decred daemon
 VOLUME ${DCRDIR}
