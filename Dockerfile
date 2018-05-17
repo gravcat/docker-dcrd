@@ -1,34 +1,25 @@
-#
-# Decred Daemon (dcrd) Docker File
-#
+FROM alpine:latest
+MAINTAINER "Nick Thieling" <nick@adrift.io>
 
-# Pull base image.
-FROM centos:latest
-MAINTAINER "Reiuiji" <reiuiji@gmail.com>
-
-ENV VERSION=v1.0.3
+ENV VERSION=v1.2.0
 ENV FILE=decred-linux-amd64-$VERSION.tar.gz
+ENV DCR_DIST_URL=https://github.com/decred/decred-binaries/releases/download/${VERSION}/${FILE}
+ENV DCR_DATA_DIR=/root/.dcrd
 
-ENV DCRURL=https://github.com/decred/decred-binaries/releases/download/${VERSION}/${FILE}
+VOLUME ${DCR_DATA_DIR}
+EXPOSE 9108 9109
 
-ENV DCRDIR=/root/.dcrd
+# prerequisites
+RUN apk add --no-cache curl tar
 
 # Create DCR Directory
-RUN mkdir -p ${DCRDIR}
+RUN mkdir -p ${DCR_DATA_DIR}
 
 # Grab the dcrd.conf and put it in the image
-COPY dcrd.conf ${DCRDIR}/dcrd.conf
+COPY dcrd.conf ${DCR_DATA_DIR}/dcrd.conf
 
 #Download and extract the needed binary (dcrd)
-RUN curl -L ${DCRURL} | tar zxvf - --strip-components=1 -C /usr/bin/. 
-
-#Setup Data Volume for the decred daemon
-VOLUME ${DCRDIR}
+RUN curl -L ${DCR_DIST_URL} | tar zxvf - --strip-components=1 -C /usr/bin/. 
 
 #Run decred daemon on start
-CMD dcrd
-
-# Default Decred peer-to-peer port
-EXPOSE 9108
-# Default RPC port
-EXPOSE 9109
+ENTRYPOINT [ "dcrd" ]
